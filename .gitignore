@@ -1,0 +1,67 @@
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+node_modules
+dist
+dist-ssr
+*.local
+
+# Editor directories and files
+.vscode/*
+!.vscode/extensions.json
+.idea
+.DS_Store
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+*.zip
+*.rar
+matrix-vol-2-*
+.context_key
+*.env
+extracted_*.md
+.freebuff/
+.agents/
+extracted_conthic/
+
+# Raw unoptimized root media & scratch crawl files
+/*.mp4
+/*.HEIC
+/*.jpeg
+/*.jpg
+!public/**
+/*.py
+notion_*.html
+notion_*.json
+jjettas_*
+yt_*
+raw_captions.xml
+transcript_panel_content.json
+context_dev_jjettas_full.json
+DESIGN.md
+GIORDANO_BETTI_STYLE.md
+JJETTAS_*.md
+PORTFOLIO_GUIDE.md
+PRD.md
+PROGRESS.md
+ROADMAP.md
+AGENTS.md
+/*.pdf
+!public/**
+spcl_preview.jpg
+stage-core.ts
+PinnedStage.tsx
+ReelLayer.tsx
+start-dev.bat
+Cool Streetwear Reveal Pose.png
+Graduate with Blue and Red Hood.png
+
+.vercel
