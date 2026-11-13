@@ -6,6 +6,7 @@ import { ComicCraftDeck } from './components/ComicCraftDeck';
 import { ComicAboutTheater } from './components/ComicAboutTheater';
 import { ComicContactFinale } from './components/ComicContactFinale';
 import { FramerVideoModal } from './components/FramerVideoModal';
+import { ScreenLoader } from './components/ScreenLoader';
 import { FEATURED_PROJECTS, ProjectItem } from './data/portfolioData';
 import { initScroll, scrollToTarget, startScroll, stopScroll } from './engine';
 
@@ -46,6 +47,7 @@ class AppErrorBoundary extends Component<
 export function App() {
   const [selectedProject, setSelectedProject] = useState<ProjectItem | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
   const [preselectedPackage, setPreselectedPackage] = useState<string>(
     'UX & Interaction Design'
   );
@@ -55,11 +57,11 @@ export function App() {
     return initScroll();
   }, []);
 
-  // Pause Lenis scroll while video modal is active
+  // Pause Lenis scroll while video modal or screen loader is active
   useEffect(() => {
-    if (isModalOpen) stopScroll();
+    if (isModalOpen || isLoading) stopScroll();
     else startScroll();
-  }, [isModalOpen]);
+  }, [isModalOpen, isLoading]);
 
   const handleNavigate = (sectionId: string) => {
     scrollToTarget(sectionId);
@@ -82,6 +84,8 @@ export function App() {
 
   return (
     <AppErrorBoundary section="ROOT">
+      <ScreenLoader onComplete={() => setIsLoading(false)} />
+
       <a className="skip-link" href="#main">
         Skip to content
       </a>
