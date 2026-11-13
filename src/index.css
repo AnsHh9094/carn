@@ -1,0 +1,260 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+  font-family: 'Big Shoulders Display';
+  src: url('/fonts/big-shoulders-display-700_900-normal.woff2') format('woff2');
+  font-weight: 700 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Gasoek One';
+  src: url('/fonts/gasoek-one-400-normal.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Plus Jakarta Sans';
+  src: url('/fonts/plus-jakarta-sans-400-normal.woff2') format('woff2');
+  font-weight: 400 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'JetBrains Mono';
+  src: url('/fonts/jetbrains-mono-400-normal.woff2') format('woff2');
+  font-weight: 400 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@layer base {
+  :root {
+    --ground: #ffffff;
+    --ink: #0a0a0a;
+    --muted: #4a4a52;
+    --field-cobalt: #2b47ff;
+    --field-orange: #ff4d00;
+    --theater-dark: #0a0a0a;
+    --gold-mode: #ffae00;
+
+    --frame-outer: 10px;
+    --rule-w: 2.5px;
+    --header-h: 68px;
+
+    --headline-xl: clamp(3.5rem, 11vw, 11.5rem);
+    --headline-l: clamp(2.75rem, 7vw, 6.75rem);
+    --headline-m: clamp(2rem, 4.4vw, 4rem);
+    --headline-s: clamp(1.35rem, 2.2vw, 2rem);
+  }
+
+  @media (max-width: 767px) {
+    :root {
+      --frame-outer: 5px;
+      --rule-w: 2px;
+      --header-h: 58px;
+    }
+  }
+
+  html {
+    background-color: var(--ink);
+    color: var(--ink);
+    scroll-behavior: auto;
+  }
+
+  html.fun-mode {
+    --field-orange: #ffae00;
+    --field-cobalt: #ff9900;
+  }
+
+  body {
+    background-color: var(--ink);
+    color: var(--ink);
+    font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+    overflow-x: clip;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    overscroll-behavior-y: none;
+  }
+
+  h1, h2, h3, .font-condensed {
+    font-family: 'Big Shoulders Display', sans-serif;
+    letter-spacing: -0.025em;
+  }
+
+  button:focus-visible,
+  a:focus-visible,
+  input:focus-visible,
+  select:focus-visible,
+  textarea:focus-visible {
+    outline: 3px solid var(--ink);
+    outline-offset: 2px;
+  }
+}
+
+/* First-stop keyboard skip link (A11y / Jury requirement) */
+.skip-link {
+  position: fixed;
+  top: -120px;
+  left: 16px;
+  z-index: 9999;
+  background: var(--ink);
+  color: #ffffff;
+  font-family: 'Big Shoulders Display', sans-serif;
+  font-weight: 800;
+  font-size: 1rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 10px 18px;
+  border: 2px solid #ffffff;
+  transition: top 0.15s ease;
+}
+
+.skip-link:focus {
+  top: 14px;
+}
+
+/* Comic-Panel Structural Outer Shell */
+.comic-shell {
+  padding-left: var(--frame-outer);
+  padding-right: var(--frame-outer);
+  padding-bottom: var(--frame-outer);
+  background-color: var(--ink);
+}
+
+.comic-panel {
+  border-bottom: var(--rule-w) solid var(--ink);
+}
+
+/* Rolling Dual-Span Link / Nav Pattern (accessible + reduced-motion safe) */
+.roll {
+  display: inline-grid;
+  overflow: clip;
+  vertical-align: top;
+}
+
+.roll > span {
+  grid-area: 1 / 1;
+  transition: translate 0.42s cubic-bezier(0.165, 0.84, 0.44, 1);
+  will-change: transform;
+}
+
+.roll > span + span {
+  translate: 0 110%;
+}
+
+@media (hover: hover) {
+  .roll:hover > span,
+  .group:hover .roll > span {
+    translate: 0 -110%;
+  }
+  .roll:hover > span + span,
+  .group:hover .roll > span + span {
+    translate: 0 0;
+  }
+}
+
+.roll:focus-visible > span {
+  translate: 0 -110%;
+}
+
+.roll:focus-visible > span + span {
+  translate: 0 0;
+}
+
+/* Tactile Comic Button with Physical Cut Shadow */
+.btn-comic {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.625rem;
+  border: 2.5px solid var(--ink);
+  box-shadow: 4px 4px 0 0 var(--ink);
+  transition: transform 0.2s cubic-bezier(0.165, 0.84, 0.44, 1),
+              box-shadow 0.2s cubic-bezier(0.165, 0.84, 0.44, 1),
+              background-color 0.2s ease,
+              color 0.2s ease;
+}
+
+@media (hover: hover) {
+  .btn-comic:hover {
+    transform: translate(-2px, -2px);
+    box-shadow: 6px 6px 0 0 var(--ink);
+  }
+}
+
+.btn-comic:active {
+  transform: translate(2px, 2px);
+  box-shadow: 1px 1px 0 0 var(--ink);
+}
+
+.btn-comic-light {
+  border: 2.5px solid #ffffff;
+  box-shadow: 4px 4px 0 0 var(--field-orange);
+}
+
+@media (hover: hover) {
+  .btn-comic-light:hover {
+    transform: translate(-2px, -2px);
+    box-shadow: 6px 6px 0 0 var(--field-orange);
+  }
+}
+
+/* Halftone comic screen subtle accent texture (CSS background only, zero runtime cost) */
+.comic-halftone {
+  background-image: radial-gradient(rgba(10, 10, 10, 0.08) 1px, transparent 1px);
+  background-size: 14px 14px;
+}
+
+.comic-halftone-light {
+  background-image: radial-gradient(rgba(255, 255, 255, 0.14) 1px, transparent 1px);
+  background-size: 16px 16px;
+}
+
+/* Reveal helper gated on html.motion so non-JS / reduced-motion stay visible */
+html.motion [data-comic-reveal] {
+  will-change: transform, opacity;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .roll > span {
+    transition: none;
+    translate: none !important;
+  }
+  .roll > span + span {
+    visibility: hidden;
+  }
+  .roll:hover,
+  .roll:focus-visible {
+    text-decoration: underline;
+    text-underline-offset: 0.2em;
+  }
+  .btn-comic,
+  .btn-comic:hover,
+  .btn-comic:active {
+    transform: none !important;
+    transition: background-color 0.15s ease, color 0.15s ease;
+  }
+}
+
+/* Custom NLE Scrubber Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #0a0a0a;
+}
+::-webkit-scrollbar-thumb {
+  background: #333338;
+  border: 1px solid #0a0a0a;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--field-orange);
+}
