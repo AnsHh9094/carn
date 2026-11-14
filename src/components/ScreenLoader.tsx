@@ -3,66 +3,57 @@ import { motion, AnimatePresence } from 'framer-motion';
 
 interface ScreenLoaderProps {
   onComplete?: () => void;
-  minDurationMs?: number;
+  onExitStart?: () => void;
+  durationMs?: number;
 }
 
 export const ScreenLoader: React.FC<ScreenLoaderProps> = ({
   onComplete,
-  minDurationMs = 3500,
+  onExitStart,
+  durationMs = 3200,
 }) => {
   const [isVisible, setIsVisible] = useState(true);
-  const [progress, setProgress] = useState(0);
   const videoRef = useRef<HTMLVideoElement | null>(null);
-  const startTimeRef = useRef<number>(Date.now());
   const timerRef = useRef<number | null>(null);
+  const exitCalledRef = useRef(false);
 
-  const handleFinish = () => {
-    if (!isVisible) return;
+  const triggerExit = () => {
+    if (exitCalledRef.current) return;
+    exitCalledRef.current = true;
+    if (onExitStart) onExitStart();
     setIsVisible(false);
   };
 
   useEffect(() => {
-    // Lock scroll while loader is active
+    // Lock scroll while intro is playing
     const originalOverflow = document.body.style.overflow;
     document.body.style.overflow = 'hidden';
 
-    // Start progress bar timer
-    const interval = window.setInterval(() => {
-      const elapsed = Date.now() - startTimeRef.current;
-      const pct = Math.min(100, Math.round((elapsed / minDurationMs) * 100));
-      setProgress(pct);
-      if (pct >= 100) {
-        clearInterval(interval);
-      }
-    }, 50);
-
-    // Fallback maximum timeout to guarantee user is never blocked
+    // Auto-transition when video completes or timer fires
     timerRef.current = window.setTimeout(() => {
-      handleFinish();
-    }, minDurationMs + 400);
+      triggerExit();
+    }, durationMs);
 
-    // Keyboard listener to skip with Escape or Space
+    // Silent keyboard skip without any visible buttons or text
     const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === 'Escape' || e.key === ' ') {
-        handleFinish();
+      if (e.key === 'Escape' || e.key === ' ' || e.key === 'Enter') {
+        triggerExit();
       }
     };
     window.addEventListener('keydown', handleKeyDown);
 
     return () => {
       document.body.style.overflow = originalOverflow;
-      clearInterval(interval);
       if (timerRef.current) clearTimeout(timerRef.current);
       window.removeEventListener('keydown', handleKeyDown);
     };
-  }, [minDurationMs]);
+  }, [durationMs]);
 
-  // Attempt video play immediately on mount
+  // Autoplay video muted
   useEffect(() => {
     if (videoRef.current) {
-      videoRef.current.playbackRate = 1.0;
       videoRef.current.play().catch(() => {
-        // Autoplay policy fallback: timer will naturally transition
+        // Fallback: timer handles exit gracefully if autoplay is blocked
       });
     }
   }, []);
@@ -75,63 +66,34 @@ export const ScreenLoader: React.FC<ScreenLoaderProps> = ({
     >
       {isVisible && (
         <motion.div
-          key="screen-loader"
+          key="cinematic-screen-loader"
           initial={{ opacity: 1 }}
           exit={{
             opacity: 0,
-            scale: 1.01,
             transition: {
-              duration: 0.7,
-              ease: [0.16, 1, 0.3, 1],
+              duration: 0.85,
+              ease: [0.22, 1, 0.36, 1],
             },
           }}
-          className="fixed inset-0 z-[99999] flex flex-col items-center justify-center bg-[#090909] text-white select-none px-4"
+          onClick={triggerExit}
+          className="fixed inset-0 z-[99999] flex items-center justify-center bg-black cursor-pointer select-none overflow-hidden"
+          style={{ willChange: 'opacity' }}
         >
-          {/* Subtle Ambient Vignette */}
-          <div className="absolute inset-0 pointer-events-none bg-[radial-gradient(ellipse_at_center,transparent_0%,rgba(0,0,0,0.6)_100%)]" />
-
-          {/* Minimal Top Telemetry */}
-          <div className="absolute top-6 left-6 right-6 flex items-center justify-between text-[11px] font-mono tracking-widest text-white/40 uppercase">
-            <span>KUNAL // PORTFOLIO INITIALIZING</span>
-            <button
-              type="button"
-              onClick={handleFinish}
-              className="text-white/50 hover:text-white transition-colors duration-200 cursor-pointer flex items-center gap-1.5 focus:outline-none"
-              aria-label="Skip intro loader"
-            >
-              <span>SKIP</span>
-              <span className="text-white/30">[ESC]</span>
-            </button>
-          </div>
-
-          {/* Cinematic Letterbox Video Container */}
-          <div className="relative w-full max-w-[680px] aspect-[1100/480] bg-black rounded-[2px] overflow-hidden border border-white/[0.08] shadow-[0_20px_50px_rgba(0,0,0,0.8)]">
-            <video
-              ref={videoRef}
-              src="/assets/screen-loader.mp4"
-              autoPlay
-              muted
-              playsInline
-              preload="auto"
-              onEnded={handleFinish}
-              className="w-full h-full object-cover pointer-events-none"
-            />
-          </div>
-
-          {/* Minimalist Progress Meter */}
-          <div className="mt-6 w-full max-w-[680px] flex flex-col gap-2">
-            <div className="w-full h-[2px] bg-white/[0.06] rounded-full overflow-hidden">
-              <motion.div
-                className="h-full bg-white/70"
-                style={{ width: `${progress}%` }}
-                transition={{ ease: 'linear' }}
-              />
-            </div>
-            <div className="flex items-center justify-between text-[10px] font-mono tracking-widest text-white/30 uppercase">
-              <span>SYSTEM READY</span>
-              <span>{progress}%</span>
-            </div>
-          </div>
+          {/* Frameless, seamless video presentation with feathered perimeter */}
+          <video
+            ref={videoRef}
+            src="/assets/screen-loader.mp4"
+            autoPlay
+            muted
+            playsInline
+            preload="auto"
+            onEnded={triggerExit}
+            className="w-full h-full max-w-[1200px] max-h-[85vh] object-contain pointer-events-none"
+            style={{
+              maskImage: 'radial-gradient(ellipse 95% 90% at 50% 50%, black 82%, transparent 100%)',
+              WebkitMaskImage: 'radial-gradient(ellipse 95% 90% at 50% 50%, black 82%, transparent 100%)',
+            }}
+          />
         </motion.div>
       )}
     </AnimatePresence>

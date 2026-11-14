@@ -1,0 +1,10 @@
+.git
+.gemini
+dist
+node_modules
+*.png
+*.jpg
+*.jpeg
+*.HEIC
+*.pdf
+!public/**

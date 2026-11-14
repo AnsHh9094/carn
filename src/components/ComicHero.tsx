@@ -1,6 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { Play, ArrowDownRight, FileText, ExternalLink } from 'lucide-react';
-import { Hero3DCanvas } from './Hero3DCanvas';
 import { KUNAL_PROFILE } from '../data/portfolioData';
 
 interface ComicHeroProps {
@@ -112,9 +111,6 @@ export const ComicHero: React.FC<ComicHeroProps> = ({
       aria-label="Introduction"
       className="comic-panel relative bg-white overflow-hidden"
     >
-      {/* Subtle Light-Mode Three.js Depth Layer */}
-      <Hero3DCanvas theme="light" />
-
       {/* Main 12-Column Editorial Comic Grid */}
       <div className="relative z-10 max-w-[1440px] mx-auto px-5 sm:px-8 lg:px-12 py-5 sm:py-8 lg:py-10 min-h-[min(calc(100svh-var(--header-h)-var(--frame-outer)),820px)] flex flex-col justify-between gap-5 sm:gap-7">
         {/* Top Meta Rail */}
@@ -270,7 +266,7 @@ export const ComicHero: React.FC<ComicHeroProps> = ({
               {/* Edinburgh Napier Graduate Cutout Portrait */}
               <div
                 ref={portraitRef}
-                className="relative z-10 flex justify-center items-end pt-10 pointer-events-none transition-transform duration-150 ease-out"
+                className="relative z-10 flex justify-center items-end pt-8 -mb-5 sm:-mb-7 lg:-mb-8 pointer-events-none transition-transform duration-150 ease-out"
               >
                 <img
                   src="/assets/kunal-graduate-hero.webp"
@@ -282,7 +278,7 @@ export const ComicHero: React.FC<ComicHeroProps> = ({
               </div>
 
               {/* Clean Live Focus Card */}
-              <div className="relative z-20 m-3 sm:m-4 bg-white border-2 border-[#0A0A0A] shadow-[4px_4px_0_0_#0A0A0A] p-3.5 sm:p-4">
+              <div className="relative z-20 mx-3 mb-3 mt-0 sm:mx-4 sm:mb-4 sm:mt-0 bg-white border-2 border-[#0A0A0A] shadow-[4px_4px_0_0_#0A0A0A] p-3.5 sm:p-4">
                 <div className="flex items-center justify-between gap-2 mb-1">
                   <span className="font-mono-code text-[10px] sm:text-[11px] font-bold uppercase tracking-wider text-[#2B47FF]">
                     {currentNote.tag}

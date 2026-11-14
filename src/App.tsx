@@ -1,4 +1,5 @@
 import React, { useEffect, useState, Component, ErrorInfo, ReactNode } from 'react';
+import { motion } from 'framer-motion';
 import { ComicHeader } from './components/ComicHeader';
 import { ComicHero } from './components/ComicHero';
 import { ComicWorkCarousel } from './components/ComicWorkCarousel';
@@ -48,9 +49,14 @@ export function App() {
   const [selectedProject, setSelectedProject] = useState<ProjectItem | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
+  const [isContentRevealed, setIsContentRevealed] = useState(false);
   const [preselectedPackage, setPreselectedPackage] = useState<string>(
     'UX & Interaction Design'
   );
+
+  const prefersReduced =
+    typeof window !== 'undefined' &&
+    window.matchMedia?.('(prefers-reduced-motion: reduce)').matches;
 
   // Single-clock GSAP + Lenis boot
   useEffect(() => {
@@ -84,13 +90,24 @@ export function App() {
 
   return (
     <AppErrorBoundary section="ROOT">
-      <ScreenLoader onComplete={() => setIsLoading(false)} />
+      <ScreenLoader
+        onExitStart={() => setIsContentRevealed(true)}
+        onComplete={() => setIsLoading(false)}
+      />
 
       <a className="skip-link" href="#main">
         Skip to content
       </a>
 
-      <div className="min-h-screen comic-shell selection:bg-[#FF4D00] selection:text-[#0A0A0A] overflow-x-clip">
+      <motion.div
+        className="min-h-screen comic-shell selection:bg-[#FF4D00] selection:text-[#0A0A0A] overflow-x-clip"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: isContentRevealed ? 1 : 0 }}
+        transition={{
+          duration: prefersReduced ? 0.4 : 0.85,
+          ease: [0.16, 1, 0.3, 1],
+        }}
+      >
         <ComicHeader onNavigate={handleNavigate} />
 
         <main
@@ -134,7 +151,7 @@ export function App() {
             setSelectedProject(null);
           }}
         />
-      </div>
+      </motion.div>
     </AppErrorBoundary>
   );
 }

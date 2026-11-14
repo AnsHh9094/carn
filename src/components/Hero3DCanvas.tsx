@@ -73,48 +73,6 @@ function StudioDust({ count = 110, theme = 'light' }: { count?: number; theme?: 
   );
 }
 
-export const Hero3DCanvas: React.FC<{ theme?: 'light' | 'dark' }> = ({ theme = 'light' }) => {
-  const [inView, setInView] = useState(true);
-  const [webglReady, setWebglReady] = useState(false);
-  const containerRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    if (!prefersReducedMotion() && !isTouch() && window.innerWidth >= 768) {
-      setWebglReady(checkWebGLSupport());
-    }
-  }, []);
-
-  useEffect(() => {
-    if (typeof IntersectionObserver === 'undefined') return;
-    const observer = new IntersectionObserver(
-      ([entry]) => setInView(entry.isIntersecting),
-      { threshold: 0.05 }
-    );
-    if (containerRef.current) observer.observe(containerRef.current);
-    return () => observer.disconnect();
-  }, []);
-
-  return (
-    <div ref={containerRef} className="absolute inset-0 pointer-events-none z-0 overflow-hidden">
-      {webglReady && (
-        <CanvasErrorBoundary>
-          <Canvas
-            camera={{ position: [0, 0, 6], fov: 45 }}
-            dpr={[1, 1.5]}
-            frameloop={inView ? 'always' : 'never'}
-            gl={{
-              antialias: true,
-              alpha: true,
-              powerPreference: 'high-performance',
-              failIfMajorPerformanceCaveat: false,
-            }}
-          >
-            <ambientLight intensity={0.7} />
-            <directionalLight position={[5, 8, 5]} intensity={0.9} color="#ffffff" />
-            <StudioDust count={110} theme={theme} />
-          </Canvas>
-        </CanvasErrorBoundary>
-      )}
-    </div>
-  );
+export const Hero3DCanvas: React.FC<{ theme?: 'light' | 'dark' }> = () => {
+  return null;
 };
