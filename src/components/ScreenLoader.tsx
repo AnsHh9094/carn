@@ -20,13 +20,13 @@ export const ScreenLoader: React.FC<ScreenLoaderProps> = ({
   const triggerExit = () => {
     if (exitCalledRef.current) return;
     exitCalledRef.current = true;
+    document.body.style.overflow = '';
     if (onExitStart) onExitStart();
     setIsVisible(false);
   };
 
   useEffect(() => {
     // Lock scroll while intro is playing
-    const originalOverflow = document.body.style.overflow;
     document.body.style.overflow = 'hidden';
 
     // Auto-transition when video completes or timer fires
@@ -43,7 +43,7 @@ export const ScreenLoader: React.FC<ScreenLoaderProps> = ({
     window.addEventListener('keydown', handleKeyDown);
 
     return () => {
-      document.body.style.overflow = originalOverflow;
+      document.body.style.overflow = '';
       if (timerRef.current) clearTimeout(timerRef.current);
       window.removeEventListener('keydown', handleKeyDown);
     };
@@ -61,6 +61,7 @@ export const ScreenLoader: React.FC<ScreenLoaderProps> = ({
   return (
     <AnimatePresence
       onExitComplete={() => {
+        document.body.style.overflow = '';
         if (onComplete) onComplete();
       }}
     >
@@ -77,7 +78,10 @@ export const ScreenLoader: React.FC<ScreenLoaderProps> = ({
           }}
           onClick={triggerExit}
           className="fixed inset-0 z-[99999] flex items-center justify-center bg-black cursor-pointer select-none overflow-hidden"
-          style={{ willChange: 'opacity' }}
+          style={{
+            willChange: 'opacity',
+            pointerEvents: exitCalledRef.current ? 'none' : 'auto',
+          }}
         >
           {/* Frameless, seamless video presentation with feathered perimeter */}
           <video

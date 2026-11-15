@@ -1,7 +1,6 @@
 import React, { useMemo, useRef, useState } from 'react';
 import { ChevronLeft, ChevronRight, Play, ArrowUpRight, ExternalLink } from 'lucide-react';
 import { FEATURED_PROJECTS, KUNAL_PROFILE, ProjectItem } from '../data/portfolioData';
-import { WorkShaderImage } from './WorkShaderImage';
 
 interface ComicWorkCarouselProps {
   onSelectProject: (project: ProjectItem) => void;
@@ -154,22 +153,28 @@ export const ComicWorkCarousel: React.FC<ComicWorkCarouselProps> = ({ onSelectPr
                 onMouseLeave={() => setHoveredId(null)}
                 className="snap-start shrink-0 w-[88vw] sm:w-[70vw] md:w-[52vw] lg:w-[42vw] xl:w-[38vw] bg-white text-[#0A0A0A] border-[2.5px] border-[#0A0A0A] shadow-[8px_8px_0_0_#0A0A0A] hover:shadow-[12px_12px_0_0_#0A0A0A] hover:-translate-y-1 transition-all duration-200 flex flex-col"
               >
-                {/* 16:9 Shader Media Window */}
+                {/* 16:9 Looping Video Preview Window */}
                 <div className="relative aspect-video bg-[#0A0A0A] border-b-[2.5px] border-[#0A0A0A] overflow-hidden group">
-                  <WorkShaderImage
-                    src={project.thumbnailUrl}
-                    alt={`${project.title} - ${project.subtitle}`}
-                    active={isHovered}
+                  <video
+                    src={project.videoUrl}
+                    poster={project.thumbnailUrl}
+                    autoPlay
+                    loop
+                    muted
+                    playsInline
+                    preload="metadata"
+                    aria-hidden="true"
+                    className="w-full h-full object-cover pointer-events-none"
                   />
 
                   <button
                     type="button"
                     onClick={() => onSelectProject(project)}
                     aria-label={`Play ${project.title}`}
-                    className="absolute inset-0 z-10 flex items-center justify-center bg-black/0 group-hover:bg-black/25 transition-colors cursor-pointer"
+                    className="absolute inset-0 z-10 flex items-center justify-center bg-black/15 group-hover:bg-black/35 transition-colors cursor-pointer"
                   >
-                    <div className="w-16 h-16 rounded-none bg-[#FF4D00] border-[2.5px] border-[#0A0A0A] shadow-[4px_4px_0_0_#0A0A0A] flex items-center justify-center group-hover:scale-110 transition-transform">
-                      <Play className="w-7 h-7 fill-[#0A0A0A] text-[#0A0A0A] ml-0.5" aria-hidden="true" />
+                    <div className="w-14 h-14 rounded-none bg-[#FF4D00] border-[2.5px] border-[#0A0A0A] shadow-[4px_4px_0_0_#0A0A0A] flex items-center justify-center group-hover:scale-110 transition-transform">
+                      <Play className="w-6 h-6 fill-[#0A0A0A] text-[#0A0A0A] ml-0.5" aria-hidden="true" />
                     </div>
                   </button>
 

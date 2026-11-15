@@ -63,7 +63,7 @@ export function App() {
     return initScroll();
   }, []);
 
-  // Pause Lenis scroll while video modal or screen loader is active
+  // Pause scroll while video modal or screen loader is active
   useEffect(() => {
     if (isModalOpen || isLoading) stopScroll();
     else startScroll();
@@ -90,10 +90,18 @@ export function App() {
 
   return (
     <AppErrorBoundary section="ROOT">
-      <ScreenLoader
-        onExitStart={() => setIsContentRevealed(true)}
-        onComplete={() => setIsLoading(false)}
-      />
+      {isLoading && (
+        <ScreenLoader
+          onExitStart={() => {
+            setIsContentRevealed(true);
+            startScroll();
+          }}
+          onComplete={() => {
+            setIsLoading(false);
+            startScroll();
+          }}
+        />
+      )}
 
       <a className="skip-link" href="#main">
         Skip to content

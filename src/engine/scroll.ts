@@ -1,7 +1,7 @@
 import Lenis from 'lenis';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { prefersReducedMotion } from './env';
+import { prefersReducedMotion, isTouch } from './env';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -38,7 +38,7 @@ export function initScroll(): () => void {
   }
   initialized = true;
 
-  if (prefersReducedMotion()) {
+  if (prefersReducedMotion() || isTouch()) {
     window.addEventListener('scroll', nativeScrollHandler, { passive: true });
     nativeScrollHandler();
     return () => {
@@ -92,10 +92,16 @@ export function scrollState(): ScrollState {
 
 export function stopScroll() {
   lenis?.stop();
+  if (typeof document !== 'undefined') {
+    document.body.style.overflow = 'hidden';
+  }
 }
 
 export function startScroll() {
   lenis?.start();
+  if (typeof document !== 'undefined') {
+    document.body.style.overflow = '';
+  }
 }
 
 export function scrollToTarget(target: string | HTMLElement | number) {

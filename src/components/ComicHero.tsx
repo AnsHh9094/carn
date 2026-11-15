@@ -211,8 +211,8 @@ export const ComicHero: React.FC<ComicHeroProps> = ({
                 </button>
 
                 <a
-                  href="/assets/Kunal_Resume_ATS.pdf"
-                  download="Kunal_Resume_ATS.pdf"
+                  href="/assets/Kunal_Resume.pdf"
+                  download="Kunal_Resume.pdf"
                   className="btn-comic min-h-[50px] px-5 bg-[#F4F4F6] text-[#0A0A0A] font-condensed font-black text-xl uppercase tracking-wide hover:bg-[#FFAE00]"
                 >
                   <FileText className="w-4 h-4" aria-hidden="true" />

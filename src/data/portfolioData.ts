@@ -140,7 +140,6 @@ export const KUNAL_PROFILE = {
       items: [
         "English",
         "Hindi",
-        "Ukrainian",
         "Creative Problem-Solving",
         "Critical Thinking",
         "Time Management",
@@ -182,7 +181,7 @@ export const KUNAL_PROFILE = {
     { label: "Editing Experience", value: "4+ YRS" },
     { label: "Work & Intern Roles", value: "06" },
     { label: "Current Degree", value: "MSc UX" },
-    { label: "Languages Spoken", value: "03" }
+    { label: "Languages Spoken", value: "02" }
   ],
   brands: [
     "Sun n Sky Entertainment",
@@ -219,72 +218,38 @@ export const FEATURED_PROJECTS: ProjectItem[] = [
     tags: ["Premiere Pro", "After Effects", "Showreel", "Sound Design"]
   },
   {
-    id: "jet2-holidays",
-    title: "JET2 HOLIDAYS × SDP",
-    subtitle: "Travel & Lifestyle Video Edit",
+    id: "london-cinematic-reel",
+    title: "LONDON CINEMATIC REEL",
+    subtitle: "High-Paced Urban Narrative & Color Grading",
     category: "Commercial",
-    client: "Jet2 Holidays / SDP",
+    client: "London Visual Series",
     year: "2025",
-    duration: "00' 45\"",
-    role: "Video Editor • Color Grading",
-    metrics: "Commercial • 16:9",
+    duration: "00' 17\"",
+    role: "Video Editor • Color Grading • Sound Design",
+    metrics: "Cinematic Reel • 60 FPS",
     description:
-      "Clean narrative pacing, voice-led storytelling, and balanced color grading tailored for travel and lifestyle social audiences.",
+      "Fast-paced urban cinematography, dynamic architectural transitions, rhythm-matched cuts, and stylized cinematic color grading.",
     aspectRatio: "16:9",
-    thumbnailUrl: "/assets/poster-jet2.webp",
-    videoUrl: "/assets/jet2-holidays-reel.mp4",
-    tags: ["Commercial", "Color Grading", "Storytelling", "Premiere Pro"]
+    thumbnailUrl: "/assets/poster-london.webp",
+    videoUrl: "/assets/london-reel.mp4",
+    tags: ["Commercial", "Color Grading", "Sound Design", "Premiere Pro"]
   },
   {
-    id: "social-hook-reel",
-    title: "SHORT-FORM SOCIAL REEL",
-    subtitle: "Fast-Paced Social & Caption Edit",
+    id: "hows-your-life",
+    title: "HOW'S YOUR LIFE",
+    subtitle: "Lifestyle Storytelling & Rhythm Pacing",
     category: "Creators",
-    client: "Social Media Content",
-    year: "2024",
-    duration: "00' 32\"",
-    role: "Short-Form Video Editor",
-    metrics: "Short-Form • 00' 32\"",
+    client: "Creator Series",
+    year: "2025",
+    duration: "00' 34\"",
+    role: "Video Editor • Sound Design",
+    metrics: "Creator Reel • 60 FPS",
     description:
-      "Social-first pacing with crisp rhythm cuts, kinetic typography captions, and platform-tailored sound design.",
+      "Social-first narrative pacing, authentic lifestyle storytelling, dynamic rhythm cuts, and atmospheric cinematic color grading.",
     aspectRatio: "16:9",
-    thumbnailUrl: "/assets/poster-social.webp",
-    videoUrl: "/assets/social-reel-1.mp4",
-    tags: ["Short-Form", "Motion Graphics", "Captions", "After Effects"]
-  },
-  {
-    id: "anuv-jain-visualizer",
-    title: "ANUV JAIN VISUALIZER",
-    subtitle: "Music Visualizer & Atmospheric Grading",
-    category: "Commercial",
-    client: "Music Visuals",
-    year: "2024",
-    duration: "02' 14\"",
-    role: "Video Editor • Visual Packaging",
-    metrics: "Music • 02' 14\"",
-    description:
-      "Mood-driven color grading, atmosphere building, and music-synced visual storytelling built for indie music distribution.",
-    aspectRatio: "16:9",
-    thumbnailUrl: "/assets/poster-anuv.webp",
-    videoUrl: "/assets/anuv-jain-visualizer.mp4",
-    tags: ["Music Video", "Color Grading", "Visual Storytelling"]
-  },
-  {
-    id: "jassi-paaji-after-movie",
-    title: "JASBIR JASSI / LIVE CUT",
-    subtitle: "Artist & Concert Event Visuals",
-    category: "Creators",
-    client: "Zoomthing / Artist Content",
-    year: "2023",
-    duration: "03' 20\"",
-    role: "Video Editor • Event Coverage",
-    metrics: "Live Event • 03' 20\"",
-    description:
-      "Concert highlights and artist-focused promotional cut built around live stage performance energy and crowd atmosphere.",
-    aspectRatio: "16:9",
-    thumbnailUrl: "/assets/poster-jassi.webp",
-    videoUrl: "/assets/jassi-after-movie.mp4",
-    tags: ["Live Event", "Artist Promo", "Audio Mix", "Premiere Pro"]
+    thumbnailUrl: "/assets/poster-hows-your-life.webp",
+    videoUrl: "/assets/hows-your-life.mp4",
+    tags: ["Short-Form", "Color Grading", "Sound Design", "Premiere Pro"]
   }
 ];
 

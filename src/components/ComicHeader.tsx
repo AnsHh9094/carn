@@ -50,8 +50,8 @@ export const ComicHeader: React.FC<ComicHeaderProps> = ({ onNavigate }) => {
             onClick={() => handleNavClick('hero')}
             className="group flex items-center gap-2 min-h-[44px] px-1 text-[#0A0A0A] focus-visible:outline-black hover:-translate-y-0.5 hover:-rotate-1 transition-transform duration-150"
           >
-            <span className="font-comic text-xl sm:text-2xl tracking-tight leading-none">
-              KUNAL
+            <span className="font-comic text-xl sm:text-2xl tracking-tight leading-none uppercase">
+              My Portfolio
             </span>
             <span className="sr-only">Return to top</span>
           </button>

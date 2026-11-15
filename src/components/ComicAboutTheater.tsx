@@ -22,8 +22,6 @@ interface ComicAboutTheaterProps {
 export const ComicAboutTheater: React.FC<ComicAboutTheaterProps> = ({
   onOpenShowreel,
 }) => {
-  const [reelHover, setReelHover] = useState(false);
-
   return (
     <section
       id="experience"
@@ -62,32 +60,20 @@ export const ComicAboutTheater: React.FC<ComicAboutTheaterProps> = ({
             </div>
           </div>
 
-          {/* Right 6 Cols: Clean 16:9 Showreel Preview */}
+          {/* Right 6 Cols: Clean 16:9 Showreel Preview (Autoplay on loop) */}
           <div className="lg:col-span-6">
-            <div
-              onMouseEnter={() => setReelHover(true)}
-              onMouseLeave={() => setReelHover(false)}
-              className="relative bg-[#0A0A0A] border-[2.5px] border-[#0A0A0A] shadow-[8px_8px_0_0_#0A0A0A] overflow-hidden aspect-video"
-            >
-              <img
-                src="/assets/poster-showreel.webp"
-                alt="Kunal 16:9 video editing showreel preview frame"
-                loading="lazy"
-                className={`w-full h-full object-cover transition-opacity duration-300 ${
-                  reelHover ? 'opacity-0' : 'opacity-100'
-                }`}
+            <div className="relative bg-[#0A0A0A] border-[2.5px] border-[#0A0A0A] shadow-[8px_8px_0_0_#0A0A0A] overflow-hidden aspect-video">
+              <video
+                src="/assets/kunal-preview-loop.mp4"
+                poster="/assets/poster-showreel.webp"
+                autoPlay
+                loop
+                muted
+                playsInline
+                preload="auto"
+                aria-hidden="true"
+                className="w-full h-full object-cover"
               />
-              {reelHover && (
-                <video
-                  src="/assets/kunal-preview-loop.mp4"
-                  autoPlay
-                  loop
-                  muted
-                  playsInline
-                  aria-hidden="true"
-                  className="absolute inset-0 w-full h-full object-cover"
-                />
-              )}
               <button
                 type="button"
                 onClick={onOpenShowreel}
@@ -289,7 +275,7 @@ export const ComicAboutTheater: React.FC<ComicAboutTheaterProps> = ({
               RESUME &amp; UX PORTFOLIO
             </span>
             <h3 className="font-condensed font-black text-4xl sm:text-5xl uppercase leading-none text-white">
-              Verified Resume PDFs &amp; Figma Prototype
+              Verified Resume &amp; Figma Prototype
             </h3>
             <p className="font-body text-sm sm:text-base text-white/90">
               {KUNAL_PROFILE.currentDegree} · {KUNAL_PROFILE.location}
@@ -298,21 +284,12 @@ export const ComicAboutTheater: React.FC<ComicAboutTheaterProps> = ({
 
           <div className="flex flex-wrap items-center gap-3 shrink-0">
             <a
-              href="/assets/Kunal_Resume_Updated.pdf"
-              download="Kunal_Resume_Updated.pdf"
-              className="btn-comic min-h-[48px] px-5 bg-white text-[#0A0A0A] font-condensed font-black text-xl uppercase whitespace-nowrap hover:bg-[#FFAE00]"
+              href="/assets/Kunal_Resume.pdf"
+              download="Kunal_Resume.pdf"
+              className="btn-comic min-h-[48px] px-6 bg-[#FF4D00] text-[#0A0A0A] font-condensed font-black text-xl uppercase whitespace-nowrap hover:bg-white"
             >
               <Download className="w-4 h-4 shrink-0" aria-hidden="true" />
-              <span>Master CV (PDF)</span>
-            </a>
-
-            <a
-              href="/assets/Kunal_Resume_ATS.pdf"
-              download="Kunal_Resume_ATS.pdf"
-              className="btn-comic min-h-[48px] px-5 bg-[#FF4D00] text-[#0A0A0A] font-condensed font-black text-xl uppercase whitespace-nowrap hover:bg-white"
-            >
-              <Download className="w-4 h-4 shrink-0" aria-hidden="true" />
-              <span>ATS Resume (PDF)</span>
+              <span>Resume (PDF)</span>
             </a>
 
             <a

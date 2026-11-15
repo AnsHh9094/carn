@@ -102,7 +102,7 @@ export const ComicCraftDeck: React.FC<ComicCraftDeckProps> = ({ onSelectService 
                 Languages
               </div>
               <div className="font-body text-sm sm:text-base font-bold text-[#0A0A0A]">
-                English · Hindi · Ukrainian
+                English · Hindi
               </div>
             </div>
           </div>
