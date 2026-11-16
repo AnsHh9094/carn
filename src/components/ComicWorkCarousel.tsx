@@ -1,6 +1,6 @@
 import React, { useMemo, useRef, useState } from 'react';
-import { ChevronLeft, ChevronRight, Play, ArrowUpRight, ExternalLink } from 'lucide-react';
-import { FEATURED_PROJECTS, KUNAL_PROFILE, ProjectItem } from '../data/portfolioData';
+import { ChevronLeft, ChevronRight, Play, ArrowUpRight } from 'lucide-react';
+import { FEATURED_PROJECTS, ProjectItem } from '../data/portfolioData';
 
 interface ComicWorkCarouselProps {
   onSelectProject: (project: ProjectItem) => void;
@@ -78,16 +78,6 @@ export const ComicWorkCarousel: React.FC<ComicWorkCarouselProps> = ({ onSelectPr
           </div>
 
           <div className="flex flex-wrap items-center justify-between lg:justify-end gap-4">
-            <a
-              href={KUNAL_PROFILE.portfolioLink}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="btn-comic min-h-[44px] px-4 bg-[#FFAE00] text-[#0A0A0A] font-condensed font-black text-xl uppercase tracking-wide hover:bg-white"
-            >
-              <span>Figma UX Prototype</span>
-              <ExternalLink className="w-4 h-4" aria-hidden="true" />
-            </a>
-
             {/* Category Filter Pills */}
             <div className="flex items-center gap-2" role="group" aria-label="Filter projects by category">
               {(['All', 'Commercial', 'Creators'] as const).map((cat) => {

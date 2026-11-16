@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import {
   Play,
   Download,
-  ExternalLink,
   GraduationCap,
   Briefcase,
   Award,
@@ -264,7 +263,7 @@ export const ComicAboutTheater: React.FC<ComicAboutTheaterProps> = ({
           </div>
         </div>
 
-        {/* Verified Resume & Figma Prototype Download Bar */}
+        {/* Verified Resume Download Bar */}
         <div
           id="resume"
           className="bg-[#2B47FF] text-white border-[2.5px] border-[#0A0A0A] shadow-[8px_8px_0_0_#0A0A0A] p-6 sm:p-8 flex flex-col lg:flex-row lg:items-center justify-between gap-6"
@@ -272,10 +271,10 @@ export const ComicAboutTheater: React.FC<ComicAboutTheaterProps> = ({
         >
           <div className="space-y-1.5">
             <span className="inline-block px-2 py-0.5 bg-[#0A0A0A] text-[#FFAE00] font-mono-code text-[11px] font-bold uppercase">
-              RESUME &amp; UX PORTFOLIO
+              VERIFIED RESUME
             </span>
             <h3 className="font-condensed font-black text-4xl sm:text-5xl uppercase leading-none text-white">
-              Verified Resume &amp; Figma Prototype
+              Verified Resume
             </h3>
             <p className="font-body text-sm sm:text-base text-white/90">
               {KUNAL_PROFILE.currentDegree} · {KUNAL_PROFILE.location}
@@ -284,22 +283,12 @@ export const ComicAboutTheater: React.FC<ComicAboutTheaterProps> = ({
 
           <div className="flex flex-wrap items-center gap-3 shrink-0">
             <a
-              href="/assets/Kunal_Resume.pdf"
-              download="Kunal_Resume.pdf"
+              href="/assets/Resume.pdf"
+              download="Resume.pdf"
               className="btn-comic min-h-[48px] px-6 bg-[#FF4D00] text-[#0A0A0A] font-condensed font-black text-xl uppercase whitespace-nowrap hover:bg-white"
             >
               <Download className="w-4 h-4 shrink-0" aria-hidden="true" />
-              <span>Resume (PDF)</span>
-            </a>
-
-            <a
-              href={KUNAL_PROFILE.portfolioLink}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="btn-comic-light inline-flex items-center gap-2 min-h-[48px] px-5 bg-[#0A0A0A] text-white font-condensed font-black text-xl uppercase whitespace-nowrap hover:bg-white hover:text-[#0A0A0A]"
-            >
-              <span>Figma Prototype</span>
-              <ExternalLink className="w-4 h-4 shrink-0" aria-hidden="true" />
+              <span>Resume.pdf</span>
             </a>
           </div>
         </div>

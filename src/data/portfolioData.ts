@@ -61,11 +61,11 @@ export const KUNAL_PROFILE = {
   agency: "UX Designer & Video Editor",
   tagline: "UX DESIGNER · VIDEO EDITOR · CONTENT CREATOR",
   subheading:
-    "UX designer and video editor with 4+ years of experience editing short- and long-form video content, combining research-driven Figma UX design with storytelling in Premiere Pro and After Effects.",
+    "UX designer and video/content editor with 4+ years of experience creating engaging digital content, editing short- and long-form video, and supporting brand storytelling across social media platforms. Combines research-driven UX design in Figma with strong visual storytelling in Adobe Premiere Pro and After Effects. Currently completing an MSc in User Experience Design at Edinburgh Napier University.",
   location: "Edinburgh, United Kingdom",
   currentDegree: "MSc User Experience Design, Edinburgh Napier University (01/2025 - 06/2025)",
   email: "kunalvips1406@gmail.com",
-  phone: "",
+  phone: "+44 7818932657",
   portfolioLink:
     "https://www.figma.com/proto/jQimrENE5lLEQazv0nwj4d/Untitled?node-id=1-55&viewport=447,168,0.68&t=LJ9qXY2xL2RjRPE9-1&scaling=min-zoom&content-scaling=fixed&page-id=0:1",
   portfolioLinkLabel: "Figma UX Portfolio Prototype",
@@ -266,17 +266,9 @@ export const EDUCATION_LIST = [
     id: "edu-ba",
     period: "09/2021 TO 09/2024",
     degree: "BA Journalism & Mass Communication",
-    institution: "VIPS TC / GGS Indraprastha University",
+    institution: "GGS Indraprastha University",
     location: "New Delhi, India",
-    details: "CGPA: 7.32 · Studied mass media and communication; Production Team Member in Enactus Society."
-  },
-  {
-    id: "edu-nios",
-    period: "2020 TO 2021",
-    degree: "Senior Secondary Education (Science Non-Medical)",
-    institution: "National Institute of Open Schooling (NIOS)",
-    location: "New Delhi, India",
-    details: "Completed Higher Secondary qualification (61.4%)."
+    details: "Media and communication, video production, visual storytelling, and audience engagement."
   }
 ];
 
@@ -424,27 +416,26 @@ export const CAREER_TIMELINE: CareerTrack[] = [
   },
   {
     id: "c5",
-    period: "2020 TO PRESENT",
+    period: "2021 TO 2024",
     title: "Freelance Video Editor & Content Creator",
-    organization: "YouTube Channels (Urban Pulse, Just Drama, Music & Gaming)",
+    organization: "YouTube Channels (Music, Gaming, Sports)",
     location: "Remote",
     trackType: "Video",
     color: "#0A0A0A",
     highlights: [
-      "Edited entertaining videos for high-traffic YouTube channels such as Urban Pulse and Just Drama, growing watch time, subscribers, and analytics."
+      "Edited and managed content for multiple monetized YouTube channels across music, gaming, and sports niches, growing watch time and audience engagement."
     ]
   },
   {
     id: "c6",
-    period: "AUG 2022 TO NOV 2022",
+    period: "SEP 2022 TO NOV 2022",
     title: "Video Editor Intern",
     organization: "Zoomthing",
     location: "New Delhi, India",
     trackType: "Video",
     color: "#FFAE00",
     highlights: [
-      "Edited short-form video content and supported the content team with post-production and asset preparation.",
-      "Developed innovative visual content tailored for artists and influencers: Madhur Sharma, Jasbir Jassi, and Inder Chahal."
+      "Edited short-form video content and supported the content team with post-production and asset preparation."
     ]
   }
 ];
